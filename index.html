@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            /* SITE BACKGROUND COLOR:   #012012   */
+            background-color: #a5e650;
+            text-transform: uppercase;
+        }
+        li{
+            list-style-type: none;
+        }
+        div{            
+            display: inline-block;
+            text-align: center;
+            vertical-align: top;
+            margin-top: 16px;
+            margin-bottom: 22px;
+            margin-left: 5px;
+            margin-right: 5px;
+            height: 86vh;
+            font-size:xx-large;
+            font-weight: 600;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            text-shadow: 2px 2px 4px #857e7e;
+            width: 30%;
+        }    
+        button{
+            padding: 8px;
+            border-radius: 100%;
+            font-size: x-large;
+            font-weight:700;
+            /*   BUTTON COLOR:   #012012   */
+            background-color: rgb(253, 228, 5);
+            box-shadow: 5px 5px 7px #565952;
+        }
+        #div0{
+            width: 90vw;
+        }
+        #div1{
+            padding-top: 25px;
+            background-color: #46c8e9;
+            box-shadow: 12px 12px 7px #1e2219;
+            opacity: 0.9;
+        }    
+        #div2{
+            padding-top: 25px;
+            font-size: large;
+            background-color: #f69239;
+            box-shadow: 12px 12px 7px #1e2219;
+            opacity: 0.9;
+        }
+        #div3{
+            padding-top: 25px;
+            background-color: #f7e92c;
+            box-shadow: 12px 12px 7px #1e2219;
+            opacity: 0.9;
+        }
+        #myList{
+            text-align: left;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="div0">        
+        <!-- TITLE OF THE FIRST LIST:   >tekst<   -->
+    <div id="div1">Katre
+        <ul id="listOne">
+        </ul>
+    </div>
+    <div id="div2">        
+        <!-- BUTTON TEXT:    >text<    -->
+        <button type="button" onclick="setTimeout(buttonClick, 1000, names, x)" id="mainButton">BINGO</button>
+        <ul id="myList">            
+        </ul>
+    </div>
+        <!-- TITLE OF THE SECOND LIST:   >tekst<   -->
+    <div id="div3">Jane
+        <ul id="listTwo">
+
+        </ul>
+    </div>
+</div>
+
+    <script>
+        var names, text, fLen, i, x;
+        // OBJECTS ON THE LIST:   "tekst",
+        x = 0;
+        console.log(x);
+        // FIRST LIST FOR DIVISION
+        names = ["Helju", "Rita","Janika","Sirje","Kersti"];
+        // SECOND LIST FOR DIVISION
+        names_x = ["Viktoria","Aire","Liis","Tiina", "Piia", "Silver",
+        "Aeri","Liia","Inna", "Kadri","Airi", "Kristel", "Katrin",
+        "Karin","Katre"]; 
+        
+        function buttonClick(names, x){
+            fLen = names.length;    
+            text = "<ul>";
+            for (i = 0; i < fLen; i++) {
+            text += "<li>" + names[i] + "</li>";
+            }
+            text += "</ul>";
+        
+            document.getElementById("myList").innerHTML = text;
+            document.getElementById("mainButton").style.visibility = "hidden"; 
+        
+            if (names.length > 0 && x == 0){
+                console.log(x);
+                // NUMBER ON THE NEXT LINE REPRESENTS DELAY:   1sec = 1000, 2sec = 2000 AND SO ON.
+                setTimeout(randomFunction, 1200, names, x);
+            } else if (names.length == 0 && x == 0) {
+                names = names_x;
+                x = 1;
+                setTimeout(randomFunction, 1200, names, x);
+            } else if (names.length > 0 && x == 1){
+                setTimeout(randomFunction, 1200, names, x);
+            } else {
+                var node = document.createElement("LI");
+                var textnode = document.createTextNode("Margit");
+                node.appendChild(textnode);
+                document.getElementById("div1").appendChild(node);
+
+                var node = document.createElement("LI");
+                var textnode = document.createTextNode("Pärnu");
+                node.appendChild(textnode);
+                document.getElementById("div1").appendChild(node);
+
+                var node = document.createElement("LI");
+                var textnode = document.createTextNode("Võru");
+                node.appendChild(textnode);
+                document.getElementById("div3").appendChild(node);
+
+
+                document.body.style.backgroundImage = "url('fireworks.gif')";
+                var t = document.createTextNode("Everything\n\n Went\n\n Great!");
+                document.getElementById("div2").appendChild(t);
+
+                document.getElementById("div2").style.backgroundColor = "transparent";
+                document.getElementById("div2").style.color = "yellow";
+                document.getElementById("div2").style.fontSize = "xx-large";
+            }
+        };
+
+        function randomFunction(names, x){
+            console.log(x);
+            console.log(names);
+            console.log(names.length%2);
+            var zombie = Math.random();
+            console.log(zombie);
+            var remove = (names.splice(names.length * zombie | 0, 1)[0]);
+
+            var node = document.createElement("LI");
+            var textnode = document.createTextNode(remove);
+            node.appendChild(textnode);
+
+            // WITH ODD NUMBER IN LIST TO START ADDING ELEMENTS TO FIRST LIST VALUE MUST BE:   == 0
+            // WITH EVEN NUMBER IN LIST VALUE MUST BE:   == 1
+            if (names.length%2 == x){
+                document.getElementById("div1").appendChild(node);
+            } else {
+                document.getElementById("div3").appendChild(node);
+            }
+
+            console.log(remove);
+            console.log(names);
+            console.log(names.length%2);
+            
+            buttonClick(names, x);
+        }
+        
+        </script>
+</body>
+        <footer>        <!-- 💗💗💗 I LOVE YOU! 💗💗💗 -->         </footer>
+</html>
